@@ -33,7 +33,8 @@ def log():
 
     try:
         data_dict = { 'key': 'value' }
-        s3.Bucket('test-flask-server').put_object(Key=f'{int(time.time()*1000)}.json', Body=data_dict)
+        # s3.Bucket('test-flask-server').put_object(Key=f'{int(time.time()*1000)}.json', Body=data_dict)
+        s3.Bucket('test-flask-server').put_object(Key=f'data.json', Body=data_dict)
     except:
         return json.dumps({ 'message': 's3.Bucket' })
 
