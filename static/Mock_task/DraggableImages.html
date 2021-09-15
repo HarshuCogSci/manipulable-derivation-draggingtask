@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dragging Task</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.6/processing.min.js" integrity="sha512-qs0N4ld6hTj4OctCxV59EzJ6dVXQZIuP0BARqBOlY9bxquJzwwcLuBeEyvC8WqkuKK7zfb0rgZ2PW3IvAXocJw==" crossorigin="anonymous"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+  <!--Round slider Jquery-->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>                                  
+
+  <!--Bootstrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style>
+
+#images{
+  height: 1200px;
+}
+
+#images_1{
+  position:relative;
+  height: 1200px;
+  top:-270px;
+}
+  
+  #img_1{
+    position:absolute;
+    top:0px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_1F{
+    position:absolute;
+    top:0px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_2{
+    position:absolute;
+    top:0px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_2F{
+    position:absolute;
+    top:250px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_3{
+    position:absolute;
+    top:250px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_3F{
+    position:absolute;
+    top:250px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_4{
+    position:absolute;
+    top:550px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_4F{
+    position:absolute;
+    top:550px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_5{
+    position:absolute;
+    top:550px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_5F{
+    position:absolute;
+    top:950px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_6{
+    position:absolute;
+    top:950px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_6F{
+    position:absolute;
+    top:950px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_B1{
+    position:absolute;
+    top:1250px;
+    left:0px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_B2{
+    position:absolute;
+    top:1250px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_B3{
+    position:absolute;
+    top:1250px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+</style>
+</head>
+<body id="overflow" style="background-color: #fce7b1;">
+
+<div class="container">
+      
+        <div id ="images" class="d-flex flex-row">
+            <div class ="d-flex col-md-8 flex-row">
+            <div id ="d-flex flex-column">
+              <img id = "img_1" src="Correct derivation_Images\1.PNG" alt="Girl in a jacket" width="400" height="150" >
+              <img id = "img_1F" src="Faulty derivation_Images\2.PNG" alt="Girl in a jacket" width="300" height="150" >
+              <img id = "img_2" src="Faulty derivation_Images\3.PNG" alt="Girl in a jacket" width="400" height="150" >
+              <img id = "img_2F" src="Correct derivation_Images\4.PNG" alt="Girl in a jacket" width="320" height="190" >
+              <img id = "img_3" src="Correct derivation_Images\3.PNG" alt="Girl in a jacket" width="350" height="190" >
+              <img id = "img_3F" src="Faulty derivation_Images\4.PNG" alt="Girl in a jacket" width="350" height="190" >
+              <img id = "img_4" src="Faulty derivation_Images\5.PNG" alt="Girl in a jacket" width="420" height="270" >
+              <img id = "img_4F" src="Correct derivation_Images\5.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_5" src="Faulty derivation_Images\6.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_5F" src="Faulty derivation_Images\1.PNG" alt="Girl in a jacket" width="400" height="190" >
+              <img id = "img_6" src="Correct derivation_Images\6.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_6F" src="Correct derivation_Images\2.PNG" alt="Girl in a jacket" width="400" height="210" >
+            </div>
+            </div>
+
+            <div class ="d-flex col-md-4 flex-row" style="z-index: -1;">
+              <div class ="d-flex flex-column">
+                <svg width="553" height="1130" viewBox="0 0 1853 4720" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.5" y="0.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <rect x="0" y="1295.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <rect x="0" y="2590.5" width="1935" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  </svg>
+                    </div>
+              </div>
+  
+        </div>
+        <div id ="images_1" class="d-flex flex-row">
+          <div class ="d-flex col-md-8 flex-row">
+            <div id ="d-flex flex-column">
+            <img id = "img_B1" src="Faulty derivation_Images\1.PNG" alt="Girl in a jacket" width="400" height="190" >
+            <img id = "img_B2" src="Correct derivation_Images\6.PNG" alt="Girl in a jacket" width="400" height="210" >
+            <img id = "img_B3" src="Correct derivation_Images\2.PNG" alt="Girl in a jacket" width="400" height="210" >
+          </div>
+          </div>
+
+          <div class ="d-flex col-md-4 flex-row">
+            <div class ="d-flex flex-column">
+              <svg width="553" height="1130" viewBox="0 0 1853 4720" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                <rect x="0" y="1295.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                <rect x="0" y="2590.5" width="1935" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+            </svg>
+                  </div>
+            </div>
+
+      </div>
+
+
+
+</div>
+
+    <script src="Drag.js"></script>
+    
+        
+</body>
+</html>
+

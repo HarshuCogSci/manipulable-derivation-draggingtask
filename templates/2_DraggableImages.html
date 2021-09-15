@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dragging Task</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.6/processing.min.js" integrity="sha512-qs0N4ld6hTj4OctCxV59EzJ6dVXQZIuP0BARqBOlY9bxquJzwwcLuBeEyvC8WqkuKK7zfb0rgZ2PW3IvAXocJw==" crossorigin="anonymous"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+  <!--Round slider Jquery-->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>                                  
+
+  <!--Bootstrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style>
+/*#images{
+  height: 1200px;
+}
+
+#images_1{
+  position:relative;
+  height: 1200px;
+  top:-270px;
+}*/
+  
+  #img_1{
+    position:absolute;
+    top:0px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_1F{
+    position:absolute;
+    top:0px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_2{
+    position:absolute;
+    top:0px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_2F{
+    position:absolute;
+    top:250px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_3{
+    position:absolute;
+    top:250px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_3F{
+    position:absolute;
+    top:250px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_4{
+    position:absolute;
+    top:550px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_4F{
+    position:absolute;
+    top:550px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_5{
+    position:absolute;
+    top:550px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_5F{
+    position:absolute;
+    top:950px;
+    left:50px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_6{
+    position:absolute;
+    top:950px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_6F{
+    position:absolute;
+    top:950px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_B1{
+    position:absolute;
+    top:1250px;
+    left:0px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_B2{
+    position:absolute;
+    top:1250px;
+    left:500px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+
+  #img_B3{
+    position:absolute;
+    top:1250px;
+    left:900px;
+    border:1px;
+    border-color: black;
+    border-style: solid;
+  }
+</style>
+</head>
+<body id="overflow" style="overflow-y:scroll;background-color: #fce7b1;zoom: 100%;">
+
+        <div id ="headings" class="d-flex flex-row ">
+          <div class ="d-flex col-md-8 flex-row justify-content-center" style="background-color: #023d75;border-radius: 40px; border-color: white; border-width: 15px;
+          ">
+            <h1 style="font-size: 50px;color: white;font-family: Nunito; ">Playground</h1>
+          </div>
+          <div class ="d-flex col-md-4 flex-row justify-content-center" style="background-color: #023d75;border-radius: 40px;">
+            <h1 style="font-size: 50px;color: white;font-family: Nunito; ">Order</h1>
+          </div>  
+        </div>  
+
+        <div id ="images" class="d-flex flex-row">
+            <div class ="d-flex col-md-8 flex-row" style="background-color: #FEFCC9;border-right: 10px solid #2B4F71;z-index: 2;">
+            <div id ="d-flex flex-column" style="z-index: 10;">
+              <img id = "img_1" src="./static/Correct derivation_Images\1.PNG" alt="Girl in a jacket" width="400" height="150" >
+              <img id = "img_1F" src="./static/Faulty derivation_Images\2.PNG" alt="Girl in a jacket" width="300" height="150" >
+              <img id = "img_2" src="./static/Faulty derivation_Images\3.PNG" alt="Girl in a jacket" width="400" height="150" >
+              <img id = "img_2F" src="./static/Correct derivation_Images\4.PNG" alt="Girl in a jacket" width="320" height="190" >
+              <img id = "img_3" src="./static/Correct derivation_Images\3.PNG" alt="Girl in a jacket" width="350" height="190" >
+              <img id = "img_3F" src="./static/Faulty derivation_Images\4.PNG" alt="Girl in a jacket" width="350" height="190" >
+              <img id = "img_4" src="./static/Faulty derivation_Images\5.PNG" alt="Girl in a jacket" width="420" height="270" >
+              <img id = "img_4F" src="./static/Correct derivation_Images\5.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_5" src="./static/Faulty derivation_Images\6.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_5F" src="./static/Faulty derivation_Images\1.PNG" alt="Girl in a jacket" width="400" height="190" >
+              <img id = "img_6" src="./static/Correct derivation_Images\6.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_6F" src="./static/Correct derivation_Images\2.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_B1" src="./static/Faulty derivation_Images\1.PNG" alt="Girl in a jacket" width="400" height="190" >
+              <img id = "img_B2" src="./static/Correct derivation_Images\6.PNG" alt="Girl in a jacket" width="400" height="210" >
+              <img id = "img_B3" src="./static/Correct derivation_Images\2.PNG" alt="Girl in a jacket" width="400" height="210" >
+            </div>
+            </div>
+
+            <div class ="d-flex col-md-4 flex-row" style="overflow-y: scroll;background-color:#E9FFB9;z-index: -10;">
+              <div class ="d-flex flex-column">
+                <svg width="517" height="349" viewBox="0 0 617 449" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.5" y="0.5" width="616" height="448" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <path d="M161.301 242V213.562H169.328C171.802 213.562 173.99 214.109 175.891 215.203C177.792 216.297 179.257 217.853 180.285 219.871C181.327 221.889 181.854 224.207 181.867 226.824V228.641C181.867 231.323 181.346 233.673 180.305 235.691C179.276 237.71 177.798 239.259 175.871 240.34C173.957 241.421 171.724 241.974 169.172 242H161.301ZM165.051 216.648V238.934H168.996C171.887 238.934 174.133 238.035 175.734 236.238C177.349 234.441 178.156 231.883 178.156 228.562V226.902C178.156 223.673 177.395 221.167 175.871 219.383C174.361 217.586 172.212 216.674 169.426 216.648H165.051ZM197.199 224.109C196.652 224.018 196.06 223.973 195.422 223.973C193.052 223.973 191.444 224.982 190.598 227V242H186.984V220.867H190.5L190.559 223.309C191.743 221.421 193.423 220.477 195.598 220.477C196.301 220.477 196.835 220.568 197.199 220.75V224.109ZM212.805 242C212.596 241.583 212.427 240.841 212.297 239.773C210.617 241.518 208.612 242.391 206.281 242.391C204.198 242.391 202.486 241.805 201.145 240.633C199.816 239.448 199.152 237.951 199.152 236.141C199.152 233.94 199.986 232.234 201.652 231.023C203.332 229.799 205.689 229.188 208.723 229.188H212.238V227.527C212.238 226.264 211.861 225.262 211.105 224.52C210.35 223.764 209.237 223.387 207.766 223.387C206.477 223.387 205.396 223.712 204.523 224.363C203.651 225.014 203.215 225.802 203.215 226.727H199.582C199.582 225.672 199.953 224.656 200.695 223.68C201.451 222.69 202.466 221.909 203.742 221.336C205.031 220.763 206.444 220.477 207.98 220.477C210.415 220.477 212.323 221.089 213.703 222.312C215.083 223.523 215.799 225.197 215.852 227.332V237.059C215.852 238.999 216.099 240.542 216.594 241.688V242H212.805ZM206.809 239.246C207.941 239.246 209.016 238.953 210.031 238.367C211.047 237.781 211.783 237.02 212.238 236.082V231.746H209.406C204.979 231.746 202.766 233.042 202.766 235.633C202.766 236.766 203.143 237.651 203.898 238.289C204.654 238.927 205.624 239.246 206.809 239.246ZM220.656 231.258C220.656 227.964 221.418 225.346 222.941 223.406C224.465 221.453 226.483 220.477 228.996 220.477C231.574 220.477 233.586 221.388 235.031 223.211L235.207 220.867H238.508V241.492C238.508 244.227 237.694 246.382 236.066 247.957C234.452 249.533 232.277 250.32 229.543 250.32C228.02 250.32 226.529 249.995 225.07 249.344C223.612 248.693 222.499 247.801 221.73 246.668L223.605 244.5C225.155 246.414 227.049 247.371 229.289 247.371C231.047 247.371 232.414 246.876 233.391 245.887C234.38 244.897 234.875 243.504 234.875 241.707V239.891C233.43 241.557 231.457 242.391 228.957 242.391C226.483 242.391 224.478 241.395 222.941 239.402C221.418 237.41 220.656 234.695 220.656 231.258ZM224.289 231.668C224.289 234.051 224.777 235.926 225.754 237.293C226.73 238.647 228.098 239.324 229.855 239.324C232.134 239.324 233.807 238.289 234.875 236.219V226.57C233.768 224.552 232.108 223.543 229.895 223.543C228.137 223.543 226.763 224.227 225.773 225.594C224.784 226.961 224.289 228.986 224.289 231.668ZM253.137 234.363C253.137 232.996 253.514 231.74 254.27 230.594C255.038 229.448 256.496 228.113 258.645 226.59C257.382 225.053 256.535 223.816 256.105 222.879C255.676 221.941 255.461 221.01 255.461 220.086C255.461 217.924 256.099 216.232 257.375 215.008C258.651 213.784 260.383 213.172 262.57 213.172C264.523 213.172 266.138 213.745 267.414 214.891C268.69 216.023 269.328 217.456 269.328 219.188C269.328 220.333 269.035 221.395 268.449 222.371C267.876 223.335 266.867 224.35 265.422 225.418L263.332 226.961L269.66 234.52C270.546 232.827 270.988 230.945 270.988 228.875H274.25C274.25 232.195 273.449 234.949 271.848 237.137L275.91 242H271.574L269.68 239.754C268.716 240.613 267.583 241.271 266.281 241.727C264.992 242.169 263.677 242.391 262.336 242.391C259.562 242.391 257.336 241.655 255.656 240.184C253.977 238.712 253.137 236.772 253.137 234.363ZM262.336 239.441C264.25 239.441 266.001 238.712 267.59 237.254L260.656 228.953L260.012 229.422C257.837 231.023 256.75 232.671 256.75 234.363C256.75 235.9 257.245 237.13 258.234 238.055C259.237 238.979 260.604 239.441 262.336 239.441ZM259.074 219.969C259.074 221.219 259.842 222.781 261.379 224.656L263.684 223.035C264.569 222.41 265.174 221.818 265.5 221.258C265.826 220.685 265.988 219.995 265.988 219.188C265.988 218.315 265.663 217.592 265.012 217.02C264.361 216.434 263.54 216.141 262.551 216.141C261.483 216.141 260.637 216.505 260.012 217.234C259.387 217.951 259.074 218.862 259.074 219.969ZM289.27 242V213.562H297.297C299.771 213.562 301.958 214.109 303.859 215.203C305.76 216.297 307.225 217.853 308.254 219.871C309.296 221.889 309.823 224.207 309.836 226.824V228.641C309.836 231.323 309.315 233.673 308.273 235.691C307.245 237.71 305.767 239.259 303.84 240.34C301.926 241.421 299.693 241.974 297.141 242H289.27ZM293.02 216.648V238.934H296.965C299.855 238.934 302.102 238.035 303.703 236.238C305.318 234.441 306.125 231.883 306.125 228.562V226.902C306.125 223.673 305.363 221.167 303.84 219.383C302.329 217.586 300.181 216.674 297.395 216.648H293.02ZM325.168 224.109C324.621 224.018 324.029 223.973 323.391 223.973C321.021 223.973 319.413 224.982 318.566 227V242H314.953V220.867H318.469L318.527 223.309C319.712 221.421 321.392 220.477 323.566 220.477C324.27 220.477 324.803 220.568 325.168 220.75V224.109ZM327.16 231.238C327.16 229.168 327.564 227.306 328.371 225.652C329.191 223.999 330.324 222.723 331.77 221.824C333.228 220.926 334.888 220.477 336.75 220.477C339.628 220.477 341.952 221.473 343.723 223.465C345.507 225.457 346.398 228.107 346.398 231.414V231.668C346.398 233.725 346.001 235.574 345.207 237.215C344.426 238.842 343.299 240.112 341.828 241.023C340.37 241.935 338.69 242.391 336.789 242.391C333.924 242.391 331.6 241.395 329.816 239.402C328.046 237.41 327.16 234.773 327.16 231.492V231.238ZM330.793 231.668C330.793 234.012 331.333 235.893 332.414 237.312C333.508 238.732 334.966 239.441 336.789 239.441C338.625 239.441 340.083 238.725 341.164 237.293C342.245 235.848 342.785 233.829 342.785 231.238C342.785 228.921 342.232 227.046 341.125 225.613C340.031 224.168 338.573 223.445 336.75 223.445C334.966 223.445 333.527 224.155 332.434 225.574C331.34 226.993 330.793 229.025 330.793 231.668ZM368.781 231.668C368.781 234.884 368.046 237.475 366.574 239.441C365.103 241.408 363.111 242.391 360.598 242.391C358.033 242.391 356.014 241.577 354.543 239.949V250.125H350.93V220.867H354.23L354.406 223.211C355.878 221.388 357.922 220.477 360.539 220.477C363.078 220.477 365.083 221.434 366.555 223.348C368.039 225.262 368.781 227.924 368.781 231.336V231.668ZM365.168 231.258C365.168 228.875 364.66 226.993 363.645 225.613C362.629 224.233 361.236 223.543 359.465 223.543C357.277 223.543 355.637 224.513 354.543 226.453V236.551C355.624 238.478 357.277 239.441 359.504 239.441C361.236 239.441 362.609 238.758 363.625 237.391C364.654 236.01 365.168 233.966 365.168 231.258ZM386.926 223.426C388.527 221.46 390.611 220.477 393.176 220.477C397.642 220.477 399.895 222.996 399.934 228.035V242H396.32V228.016C396.307 226.492 395.956 225.366 395.266 224.637C394.589 223.908 393.527 223.543 392.082 223.543C390.91 223.543 389.882 223.855 388.996 224.48C388.111 225.105 387.421 225.926 386.926 226.941V242H383.312V212H386.926V223.426ZM414.113 242.391C411.249 242.391 408.918 241.453 407.121 239.578C405.324 237.69 404.426 235.171 404.426 232.02V231.355C404.426 229.259 404.823 227.391 405.617 225.75C406.424 224.096 407.544 222.807 408.977 221.883C410.422 220.945 411.984 220.477 413.664 220.477C416.411 220.477 418.547 221.382 420.07 223.191C421.594 225.001 422.355 227.592 422.355 230.965V232.469H408.039C408.091 234.552 408.697 236.238 409.855 237.527C411.027 238.803 412.512 239.441 414.309 239.441C415.585 239.441 416.665 239.181 417.551 238.66C418.436 238.139 419.211 237.449 419.875 236.59L422.082 238.309C420.311 241.03 417.655 242.391 414.113 242.391ZM413.664 223.445C412.206 223.445 410.982 223.979 409.992 225.047C409.003 226.102 408.391 227.586 408.156 229.5H418.742V229.227C418.638 227.391 418.143 225.971 417.258 224.969C416.372 223.953 415.174 223.445 413.664 223.445ZM436.77 224.109C436.223 224.018 435.63 223.973 434.992 223.973C432.622 223.973 431.014 224.982 430.168 227V242H426.555V220.867H430.07L430.129 223.309C431.314 221.421 432.993 220.477 435.168 220.477C435.871 220.477 436.405 220.568 436.77 220.75V224.109ZM448.488 242.391C445.624 242.391 443.293 241.453 441.496 239.578C439.699 237.69 438.801 235.171 438.801 232.02V231.355C438.801 229.259 439.198 227.391 439.992 225.75C440.799 224.096 441.919 222.807 443.352 221.883C444.797 220.945 446.359 220.477 448.039 220.477C450.786 220.477 452.922 221.382 454.445 223.191C455.969 225.001 456.73 227.592 456.73 230.965V232.469H442.414C442.466 234.552 443.072 236.238 444.23 237.527C445.402 238.803 446.887 239.441 448.684 239.441C449.96 239.441 451.04 239.181 451.926 238.66C452.811 238.139 453.586 237.449 454.25 236.59L456.457 238.309C454.686 241.03 452.03 242.391 448.488 242.391ZM448.039 223.445C446.581 223.445 445.357 223.979 444.367 225.047C443.378 226.102 442.766 227.586 442.531 229.5H453.117V229.227C453.013 227.391 452.518 225.971 451.633 224.969C450.747 223.953 449.549 223.445 448.039 223.445Z" fill="#8F8888"/>
+                  <rect width="61" height="76" fill="#696666"/>
+                  <path d="M35.5557 52H28.5V24.8027L20.0771 27.415V21.6777L34.7988 16.4043H35.5557V52Z" fill="#F3E9E9"/>
+                  </svg>
+                  
+                <svg width="553" height="4130" viewBox="0 0 1853 4720" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.5" y="0.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <rect x="0" y="1295.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <rect x="0" y="5590.5" width="1935" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <rect x="0.5" y="0.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <rect x="0" y="1295.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                  <rect x="0" y="2590.5" width="1935" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+
+
+                  </svg>
+                    </div>
+              </div>
+  
+        </div>
+
+
+        <div id ="images" class="d-flex flex-row">
+          <div class ="d-flex col-md-8 flex-row" style="overflow-y: scroll;background-color: #FEFCC9;border-right: 10px solid #2B4F71">
+          </div>
+
+          <div class ="d-flex col-md-4 flex-row" style="z-index: 4;position:fixed;top:900px;left:1340px">
+            <a id="finish" class="btn btn-block btn-dark" ><h1 style="font-size:40px;color: white;">Finish</h1></a>
+            </div>
+
+      </div>
+
+        
+        <!--
+        <div id ="images_1" class="d-flex flex-row">
+          <div class ="d-flex col-md-8 flex-row">
+          </div>
+
+          <div class ="d-flex col-md-4 flex-row">
+            <div class ="d-flex flex-column">
+              <svg width="553" height="1130" viewBox="0 0 1853 4720" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                <rect x="0" y="1295.5" width="1934" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+                <rect x="0" y="2590.5" width="1935" height="1218" fill="#C4C4C4" fill-opacity="0.38" stroke="black"/>
+            </svg>
+                  </div>
+            </div>
+
+      </div>-->
+
+
+
+
+
+
+
+    <script src="./static/Drag.js"></script>
+    <script src="./static/data.js"></script>
+    
+
+        
+</body>
+</html>
+    

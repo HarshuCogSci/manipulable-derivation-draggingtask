@@ -1,5 +1,6 @@
-from flask import Flask, json
+from flask import Flask, json, render_template, request
 import boto3
+import time
 
 application = Flask(__name__)
 
@@ -7,9 +8,26 @@ s3 = boto3.resource('s3')
 data = json.dumps({ "key": "value" })
 
 @application.route('/')
-def hello_world():
-    s3.Bucket('test-flask-server').put_object(Key='data.json', Body=data)
-    return 'hello world'
+def intro():
+    return render_template("1_Intro.html")
+
+@application.route('/2_DraggableImages')
+def draggable():
+    return render_template("2_DraggableImages.html")
+
+@application.route('/3_Finish')
+def finish():
+    return render_template("3_Finish.html")
+
+@application.route('/log', methods=['POST'])
+def log():
+    try:
+        data_json = request.form['data']
+        data_dict = json.loads(data_json)
+        s3.Bucket('test-flask-server').put_object(Key=f'{int(time.time()*1000)}.json', Body=data_dict)
+    except:
+        pass
+    return json.dumps({ 'message': 'success' })
 
 # run the app.
 if __name__ == "__main__":
