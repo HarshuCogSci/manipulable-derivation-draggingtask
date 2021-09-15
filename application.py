@@ -26,7 +26,7 @@ def log():
         data_dict = json.loads(data_json)
         s3.Bucket('test-flask-server').put_object(Key=f'{int(time.time()*1000)}.json', Body=data_dict)
     except:
-        pass
+        return json.dumps({ 'message': 'error' })
     return json.dumps({ 'message': 'success' })
 
 # run the app.
