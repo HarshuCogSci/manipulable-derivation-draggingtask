@@ -1,5 +1,6 @@
 from flask import Flask, json
 import boto3
+
 application = Flask(__name__)
 
 s3 = boto3.resource('s3')
@@ -9,3 +10,8 @@ data = json.dumps({ "key": "value" })
 def hello_world():
     s3.Bucket('test-flask-server').put_object(Key='data.json', Body=data)
     return 'hello world'
+
+# run the app.
+if __name__ == "__main__":
+    application.debug = True
+    application.run()
