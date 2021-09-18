@@ -1,8 +1,8 @@
 /*************************************/
 //Data Log
 
-function log_to_server(){
-    let data_to_log = { 'data': JSON.stringify({ 'data': data_log.splice(0)}), 'name': name_ };
+function log_to_server(data_){
+    let data_to_log = { 'data': JSON.stringify({ 'data': data_ }), 'name': name_ };
 
     $.ajax({
         url: '/log',
@@ -16,12 +16,9 @@ function log_to_server(){
 /*************************************/
 //Data Log
 
-let data_log = [], data_log_archive = [];
-
 // Data Log Event
 $('body').on('data_log_event', function(event){
-    // data_log.push(event.event_data);
-    log_to_server();
+    log_to_server(event.event_data);
 })
 
 /*************************************/
