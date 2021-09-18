@@ -802,11 +802,12 @@ d3.select("#finish").on("click",function(){
             time = Date.now()/1000
             let temp_data_log = {'event_type':'final-positions', 'img_id':('img_' + img_ids[i]), 'loc_top':top_img, 'loc_left':left_img, 'time':time};
             $('body').trigger({ 'type': 'data_log_event', 'event_data': temp_data_log });
-            
+            console.log(temp_data_log);
         }
-                
-        setTimeout(function(){ window.open("3_Finish","_self" ); }, 2000);
-      } })
+
+        setTimeout(function(){ window.location.href = './3_Finish'; }, 3000);
+      } 
+})
 
 /*************************************/
 

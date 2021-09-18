@@ -35,8 +35,7 @@ def finish():
             s3.Bucket('test-flask-server').put_object(Key=f'{name}_{int(time.time()*1000)}.json', Body=json.dumps({ "log": data_log }))
             data_log = []
     except:
-        return json.dumps({ 'message': 's3.Bucket' })
-
+        return json.dumps({ 'error': 's3.Bucket_Finish' })
 
     return render_template("3_Finish.html")
 
@@ -50,20 +49,21 @@ def log():
         data_json = request.form['data']
         name = request.form['name']
     except:
-        return json.dumps({ 'message': 'request.form' })
+        return json.dumps({ 'error': 'request.form' })
 
     try:
         data_dict = json.loads(data_json)
     except:
-        return json.dumps({ 'message': 'json.loads' })
+        return json.dumps({ 'error': 'json.loads' })
 
     try:
         data_log.append(data_dict)
+        print(data_dict)
         if len(data_log) > 1000:
-            # s3.Bucket('test-flask-server').put_object(Key=f'{name}_{int(time.time()*1000)}.json', Body=json.dumps({ "log": data_log }))
+            s3.Bucket('test-flask-server').put_object(Key=f'{name}_{int(time.time()*1000)}.json', Body=json.dumps({ "log": data_log }))
             data_log = []
     except:
-        return json.dumps({ 'message': 's3.Bucket' })
+        return json.dumps({ 'error': 's3.Bucket' })
 
     return json.dumps({ 'message': 'success' })
 
