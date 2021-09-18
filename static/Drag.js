@@ -805,7 +805,7 @@ d3.select("#finish").on("click",function(){
             
         }
                 
-        window.open("3_Finish","_self" );
+        setTimeout(function(){ window.open("3_Finish","_self" ); }, 2000);
       } })
 
 /*************************************/
