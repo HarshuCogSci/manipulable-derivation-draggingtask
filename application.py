@@ -60,7 +60,7 @@ def log():
     try:
         data_log.append(data_dict)
         if len(data_log) > 1000:
-            s3.Bucket('test-flask-server').put_object(Key=f'{name}_{int(time.time()*1000)}.json', Body=json.dumps({ "log": data_log }))
+            # s3.Bucket('test-flask-server').put_object(Key=f'{name}_{int(time.time()*1000)}.json', Body=json.dumps({ "log": data_log }))
             data_log = []
     except:
         return json.dumps({ 'message': 's3.Bucket' })

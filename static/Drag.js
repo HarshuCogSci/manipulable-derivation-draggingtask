@@ -14,8 +14,9 @@ $('document').ready(function(){
     }
     else{window.open("2_DraggableImages","_self" );}
 
-    img_ids = ['1','1F','2','2F','3','3F','4','4F','5','5F','6','6F','B1','B2','B3']
-    for(i=0;i<15;i++){
+    // img_ids = ['1','1F','2','2F','3','3F','4','4F','5','5F','6','6F','B1','B2','B3']
+    img_ids = ['1','2','2F','3','3F','4','5','5F','6','6F','B1','B2']
+    for(i=0;i<img_ids.length;i++){
         top_img = d3.select("#img_" + img_ids[i]).style("top")
         left_img = d3.select("#img_" + img_ids[i]).style("left")
         time = Date.now()/1000
@@ -795,8 +796,8 @@ d3.select("#finish").on("click",function(){
     
         }) */
         img_ids = ['1','2','2F','3','3F','4','5','5F','6','6F','B1','B2']
-        for(i=0;i<15;i++){
-            top_img = d3.select("#img_" + img_ids[i]).style("top")
+        for(i=0;i<img_ids.length;i++){
+                top_img = d3.select("#img_" + img_ids[i]).style("top")
             left_img = d3.select("#img_" + img_ids[i]).style("left")
             time = Date.now()/1000
             let temp_data_log = {'event_type':'final-positions', 'img_id':('img_' + img_ids[i]), 'loc_top':top_img, 'loc_left':left_img, 'time':time};
