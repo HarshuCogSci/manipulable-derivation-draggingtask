@@ -794,7 +794,6 @@ d3.select("#finish").on("click",function(){
             $('body').trigger({ 'type': 'data_log_event', 'event_data': temp_data_log });
     
         }) */
-        window.open("3_Finish","_self" );
         img_ids = ['1','2','2F','3','3F','4','5','5F','6','6F','B1','B2']
         for(i=0;i<15;i++){
             top_img = d3.select("#img_" + img_ids[i]).style("top")
@@ -802,10 +801,10 @@ d3.select("#finish").on("click",function(){
             time = Date.now()/1000
             let temp_data_log = {'event_type':'final-positions', 'img_id':('img_' + img_ids[i]), 'loc_top':top_img, 'loc_left':left_img, 'time':time};
             $('body').trigger({ 'type': 'data_log_event', 'event_data': temp_data_log });
-        
-            }
-                   
-    
+            
+        }
+                
+        window.open("3_Finish","_self" );
       } })
 
 /*************************************/
